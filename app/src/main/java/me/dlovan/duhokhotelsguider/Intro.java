@@ -18,7 +18,7 @@ public class Intro extends AppCompatActivity {
         setContentView(R.layout.activity_intro);
            // progressBar = findViewById(R.id.progressBar1);
            // progressBar.setVisibility(View.INVISIBLE);
-
+/*
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -28,5 +28,6 @@ public class Intro extends AppCompatActivity {
                 finish();
             }
         }, 3000);
+*/
     }
 }
