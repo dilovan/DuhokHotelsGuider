@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">رێبەرێ هوتێلێن دهوکێ </string>
+    <string name="title_activity_main_page">Map</string>
+    <string name="title_activity_hotel_detail">زانیاریێن هوتێلێ </string>
+    <string name="hotelname">ناڤێ هوتێلێ</string>
+    <string name="hoteladdress">ئەدرێسێ هوتێلێ</string>
+    <string name="hotelphone">ژمارا پەیوەندیێ</string>
+    <string name="hotelpicture">وێنێ هوتێلێ</string>
+    <string name="call_permission_denied_message">دەستیرى نە هاتە دان بو گەهاندنا زانیاریان ژ ئینتەرنێتێ</string>
+
+</resources>
