@@ -45,7 +45,6 @@ public class MainPage extends FragmentActivity implements OnMapReadyCallback, Go
     private LatLng latlng;
     private LocationManager locationManager;
     private LocationListener locationListener;
-    private FloatingActionButton btnAddHote;
     private FloatingActionButton btnDirection;
     public List<Hotels> listHotels;
     JSONArray jsonOb;
@@ -61,7 +60,6 @@ public class MainPage extends FragmentActivity implements OnMapReadyCallback, Go
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         btnDirection = findViewById(R.id.DirectionButtonID);
-        btnAddHote = findViewById(R.id.AddButtonID);
         progressBar = findViewById(R.id.progressBar1);
     }
 
