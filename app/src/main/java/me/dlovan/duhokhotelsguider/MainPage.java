@@ -1,11 +1,15 @@
 package me.dlovan.duhokhotelsguider;
 
 import android.Manifest;
+import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -49,23 +53,33 @@ public class MainPage extends FragmentActivity implements OnMapReadyCallback, Go
     public List<Hotels> listHotels;
     JSONArray jsonOb;
     ArrayList<String> images;
-
+    public static String ServiceURL = "https://dlovan.000webhostapp.com/apps/FHOGM/hotels.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_page);
-        listHotels = new ArrayList<>();
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-        btnDirection = findViewById(R.id.DirectionButtonID);
-        progressBar = findViewById(R.id.progressBar1);
+
+        ConnectionDetector cd = new ConnectionDetector(this);
+        if (cd.isConnected()) {
+            setContentView(R.layout.activity_main_page);
+            listHotels = new ArrayList<>();
+            // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.map);
+            mapFragment.getMapAsync(this);
+            btnDirection = findViewById(R.id.DirectionButtonID);
+            progressBar = findViewById(R.id.progressBar1);
+        } else {
+
+            Toast.makeText(getApplicationContext(),"There is no internet connection!",Toast.LENGTH_LONG).show();
+        }
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         new getHotels().execute();
+
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         mMap = googleMap;
         mMap.getUiSettings().setCompassEnabled(false);
@@ -152,9 +166,9 @@ public class MainPage extends FragmentActivity implements OnMapReadyCallback, Go
         @Override
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
-            String url = "https://dlovan.000webhostapp.com/apps/FHOGM/hotels.php";
+
             try {
-                String jsonStr = sh.makeServiceCall(url);
+                String jsonStr = sh.makeServiceCall(ServiceURL);
                 jsonOb = new JSONArray(jsonStr);
                 for (int i = 0; i < jsonOb.length(); i++) {
                     Hotels Hs = new Hotels();
@@ -212,6 +226,35 @@ public class MainPage extends FragmentActivity implements OnMapReadyCallback, Go
                 // we have permission!
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
             }
+        }
+    }
+    public class ConnectionDetector {
+
+        private Context context;
+
+        public ConnectionDetector(Context context) {
+
+            this.context = context;
+        }
+
+        public boolean isConnected() {
+
+            ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Service.CONNECTIVITY_SERVICE);
+
+            if ( connectivity != null) {
+
+                NetworkInfo info = connectivity.getActiveNetworkInfo();
+
+                if (info != null) {
+
+                    if (info.getState() == NetworkInfo.State.CONNECTED) {
+
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }
