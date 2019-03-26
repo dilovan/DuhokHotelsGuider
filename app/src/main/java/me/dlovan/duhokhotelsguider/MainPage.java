@@ -53,13 +53,11 @@ public class MainPage extends FragmentActivity implements OnMapReadyCallback, Go
     public List<Hotels> listHotels;
     JSONArray jsonOb;
     ArrayList<String> images;
+
     public static String ServiceURL = "https://dlovan.000webhostapp.com/apps/FHOGM/hotels.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        ConnectionDetector cd = new ConnectionDetector(this);
-        if (cd.isConnected()) {
             setContentView(R.layout.activity_main_page);
             listHotels = new ArrayList<>();
             // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -68,26 +66,20 @@ public class MainPage extends FragmentActivity implements OnMapReadyCallback, Go
             mapFragment.getMapAsync(this);
             btnDirection = findViewById(R.id.DirectionButtonID);
             progressBar = findViewById(R.id.progressBar1);
-        } else {
 
-            Toast.makeText(getApplicationContext(),"There is no internet connection!",Toast.LENGTH_LONG).show();
-        }
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
-        new getHotels().execute();
-
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+    new getHotels().execute();
+    locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         mMap = googleMap;
         mMap.getUiSettings().setCompassEnabled(false);
         mMap.getUiSettings().setZoomControlsEnabled(false);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.getUiSettings().setMapToolbarEnabled(false);
         //getPermisions();
-        //mMap.setMyLocationEnabled(true);
+        mMap.setMyLocationEnabled(true);
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
@@ -228,33 +220,5 @@ public class MainPage extends FragmentActivity implements OnMapReadyCallback, Go
             }
         }
     }
-    public class ConnectionDetector {
 
-        private Context context;
-
-        public ConnectionDetector(Context context) {
-
-            this.context = context;
-        }
-
-        public boolean isConnected() {
-
-            ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Service.CONNECTIVITY_SERVICE);
-
-            if ( connectivity != null) {
-
-                NetworkInfo info = connectivity.getActiveNetworkInfo();
-
-                if (info != null) {
-
-                    if (info.getState() == NetworkInfo.State.CONNECTED) {
-
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-    }
 }

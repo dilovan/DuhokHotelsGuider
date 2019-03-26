@@ -20,7 +20,7 @@ public class Intro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
         ConnectionDetector2 cd = new ConnectionDetector2(this);
-        if (cd.isConnected()) {
+        if (cd.isConnected()==true) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -30,12 +30,12 @@ public class Intro extends AppCompatActivity {
                 }
             }, 3000);
         } else {
-            Toast.makeText(getApplicationContext(), R.string.app_name +"Says: There is no internet connection!.Please connect to internet", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Says: There is no internet connection!.Please connect to internet", Toast.LENGTH_LONG).show();
 
         }
     }
 
-    public class ConnectionDetector2 {
+    private class ConnectionDetector2 {
         private Context context;
         public ConnectionDetector2(Context context) { this.context = context; }
         public boolean isConnected() {
