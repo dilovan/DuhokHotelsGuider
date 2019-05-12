@@ -109,6 +109,46 @@
 
 
             <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="10dp"
+                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:text="دویراتى" />
+
+            <TextView
+                android:id="@+id/textViewDirection"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_gravity="left"
+                android:layout_marginRight="50dp"
+                android:textAlignment="textEnd"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
+            <TextView
+                android:id="@+id/textDuration"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:text="دەمێ گەهشتنێ ب ترومبێلێ" />
+
+            <TextView
+                android:id="@+id/textViewDuration"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_gravity="left"
+                android:layout_marginRight="50dp"
+                android:textAlignment="textEnd"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
+            <TextView
                 android:id="@+id/textViewDesc"
                 android:layout_width="match_parent"
                 android:layout_weight="1"

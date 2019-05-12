@@ -33,6 +33,7 @@ public class HotelDetail extends AppCompatActivity {
     TextView txtAddress;
     TextView txtPhone;
     TextView txtDesc;
+    TextView txtDirection,txtDuration;
     ScrollView scrollView;
     ImageView iv;
     ImageView im1,im2,im3,im4;
@@ -44,6 +45,7 @@ public class HotelDetail extends AppCompatActivity {
     String Address;
     String Phone;
     String Description;
+    String Distance,Duration;
     Integer ID;
     ArrayList<String> images;
     ProgressBar progressBar;
@@ -61,6 +63,8 @@ public class HotelDetail extends AppCompatActivity {
             Address   = extras.getString("Address");
             Phone     = extras.getString("Phone");
             Description = extras.getString("description");
+             Distance = extras.getString("Distance");
+             Duration = extras.getString("Duration");
             images.addAll(extras.getStringArrayList("images"));
         }
 
@@ -72,6 +76,9 @@ public class HotelDetail extends AppCompatActivity {
         txtDesc    = findViewById(R.id.textViewDesc);
         scrollView = findViewById(R.id.scrollView1);
         iv         = findViewById(R.id.imageView2);
+        txtDirection = findViewById(R.id.textViewDirection);
+        txtDuration = findViewById(R.id.textViewDuration);
+
         call       = findViewById(R.id.CallButtonID);
         im1  = findViewById(R.id.img1);
         im2  = findViewById(R.id.img2);
@@ -111,6 +118,8 @@ public class HotelDetail extends AppCompatActivity {
         txtAddress.setText(Address);
         txtPhone.setText(Phone);
         txtDesc.setText(Description);
+        txtDuration.setText(Duration);
+        txtDirection.setText(Distance);
 
             im1.setOnClickListener(new View.OnClickListener() {
                 @Override
