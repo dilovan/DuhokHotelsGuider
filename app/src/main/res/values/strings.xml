@@ -8,5 +8,7 @@
     <string name="hotelpicture">وێنێ هوتێلێ</string>
     <string name="call_permission_denied_message">دەستیرى نە هاتە دان بو گەهاندنا زانیاریان ژ ئینتەرنێتێ</string>
     <string name="dhg">Duhok Hotels Guider</string>
+        <string name="api">AIzaSyDZ4SUzFsBLAf-0fp3J6vwHUVmdp6tB5gc</string>
+    
 
 </resources>
